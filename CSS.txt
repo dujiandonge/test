@@ -1,0 +1,94 @@
+样式来源优先级：继承样式(继承HTML的样式)<代理样式)(默认的样式)<用户样式(自定义样式)
+用户样式来源：
+        外部样式（链入link）多个文档之间共享和复用样式
+        内部样式标签<style></style>会覆盖外部样式
+        行内样式style优先级最高
+当标签内有!important代表调试样式，很重要其他相同属性无法改变此属性的值
+基本选择器：标签选择器，类别选择器，id选择器(优先级依次增加)
+body > *{
+仅选中子元素“>”
+}
+body *{
+选中后代所有元素"空格"
+}
+~代表此后同级所有的都选中
+伪类选择器：
+伪类选择子元素一定要有一个起点/上下文
+伪类选择器前面有一个冒号
+起点：nth-of-type(选中的第几个)
+nth-last-of-type(选中倒数第几个数字)
+伪类选择器(状态相关)
+        a:link{
+        设置链接状态
+        }
+        a:visited{
+        设置访问后的状态
+        }
+        a:hover{
+        设置鼠标悬挂时的状态
+        }
+        a:hover{
+        设置点击鼠标链接并且未松开时的状态
+        }
+盒模型
+margin:外边距
+【padding:内边距(透明的，只有宽度，没有其他颜色或者属性)
+简写：四值，适用于四个方向完全不同：按照上右下左（顺时针方向）依次赋值
+三值，上下不同，左右相同
+双值，上下相同，左右相同
+单值，四个方向完全相同】
+border：1px solid red(边框)(圆角不能简写，必须单独写一个border-radius)
+以上边框为例：boder-top-width,boder-top-style,boder-top-color,boder-top-left-radius
+
+在w3c的标准模盒中，width,height仅作用于内容，padding，border不包含在内
+用box-sizing:border-box;属性即可定义盒子大小，包含内边距和边框在内
+box-sizing:content-box;属性与之相反，不包含内边距和边框在内
+background-clip:content-box,背景裁切
+左右宽度一般能居中auto，垂直方向一般不能居中（容易被视觉混淆，因为屏幕垂直方向有滚动条），高度未知不容易实现
+float：浮动元素仍在文档流中，但但不受默认布局规则的限制
+浮动元素相对于它的包含块浮动，并且只允许水平方向浮动
+定位：将元素显示到指定位置上
+位置：由top,left,right,bottom四个属性决定
+参考：源码中的位置，元素自身的位置，相对它的具有定位属性的包含块的位置
+position：relative相对定位（相对自己的位置发生偏移）
+position：absolute绝对定位（参考父级具有定位属性的元素来进行定位）
+position：fixed（固定定位，总是相对于当前窗口定位（HTML）
+flex布局的基本术语：容器和项目
+1em=16px：em元素上下文中的font-size默认16px
+rem：表示根元素HTML中的font-size
+HTML与：root写法相同
+使用dispaly: flex属性的元素，称为flex元素，称它的布局为：flex布局
+当前的container元素就称之为"弹性容器"
+弹性容器的"子元素"就称之"弹性项目"(子元素就是下一级)
+项目默认转为行内块元素
+弹性项目浮动无效，定位有效
+弹性项目在主轴上的排列方式：
+        主轴:项目沿着主轴排列,默认为行方向,即水平
+        交叉轴:与主轴垂直的轴线
+        flex-flew: row nowrap(默认水平排列且不换行)
+        flex-flew:column nowarp(此时，主轴是垂直方向，而交叉轴是水平)
+        设置项目在主轴上的对齐的前提,主轴上有剩余空间
+        将所有项目看成一个整体：
+        justify-content:flex-start;
+        justify-content:flex-end;
+        justify-content:center;
+        将项目视为独立个体：
+        justify-content:space-between;(两端对齐)
+        justify-content:space-around;(分散对齐)
+        justify-content:space-evenly;(平均对齐)
+        项目在交叉轴上的对齐：
+        align-items:stretch;(自动伸展)
+        align-items:flex-start;(贴着上边缘对齐)
+项目上的属性flex:
+        设置项目是否允许放大：
+        flex-grow;1
+        设置项目是否允许缩小：
+        flex-shrink;1
+        设置项目在主轴上的空间：
+        flex-basis:15rem(优先级大于width，但小于min-width)
+        一行代码替换三行代码：flex：1 0 15rem
+        默认值：flex：0 1 auto
+        还原到默认值：flex：initial
+        单值：允许放大和收缩
+        flex：1; flex:auto
+        oder:越小越靠前，越大越靠后，根据这个规律，可以自定义项目在主轴上的排列顺序，默认为0
